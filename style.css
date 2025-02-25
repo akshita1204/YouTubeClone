@@ -8,6 +8,35 @@ body
 {
     min-height:100vh;
     display: grid;
-    grid-template-rows:100px calc(100vh-100px); 
-    grid-template-columns: 100px;
+    grid-template-rows:100px 1fr; 
+    grid-template-columns: 100px 1fr;
+
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+    background-color: yellow;
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+aside
+{
+    background-color: aquamarine;
+}
+main{
+    background-color: blueviolet;
+    display:grid;
+    grid-template-columns: repeat(auto-fit,20rem);
+    align-content: center;
+    grid-auto-rows:auto;
+    gap:2rem;
+    padding:2rem;
+}
+.card
+{
+    height:200px;
+    background-color: orange;
 }
