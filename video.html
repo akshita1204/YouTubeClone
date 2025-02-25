@@ -18,6 +18,20 @@
         const splitText=searchText.split('=');
         const videoId=splitText[1];
         iframe.src = `https://www.youtube.com/embed/${videoId}`
+
+    const youtubehistory=localStorage.getItem('yt_history');
+    if(!youtubehistory)
+    {
+        const newhistory=[];
+        newhistory.push(videoId);
+        localStorage.setItem('yt_history',JSON.stringify(newhistory));
+    }
+    else
+    {
+        const newhistory=JSON.parse(youtubehistory);
+        newhistory.push(videoId);
+        localStorage.setItem('yt_history',JSON.stringify(newhistory));
+    }
     </script>
 </body>
 
