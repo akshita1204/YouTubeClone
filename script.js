@@ -22,7 +22,7 @@
 // })
 // }
 // getdata();
-const dummydata=[
+const dummydata = [
     [
         {
             "type": "video",
@@ -5727,14 +5727,26 @@ const dummydata=[
     ]
 ]
 
-const root=document.querySelector('main')
-const showUI=(list)=>
+
+const showUI = (list) => {
+    const root = document.querySelector('main');
+    list.forEach((obj,idx) => {
+        const newCard = document.createElement('div');
+        newCard.addEventListener("click",()=>
+        {
+            window.open( `./video.html?id=${obj.videoId}`,"_top");
+        });
+        newCard.className = 'card';
+        newCard.innerHTML = `
+        <img src='${obj.videoThumbnails[0].url}' alt='Thumbnail' width:"100%" onmouseover='handleHover(event, ${idx})'>
+        <h6>${obj.author}</h6>
+        <h4>${obj.title}</h4>
+        `;
+        root.appendChild(newCard);
+    });
+};
+
+const handlehover=(e,idx)=>
 {
-    list.forEach((obj)=>
-    {
-        const newCard=document.createElement('div');
-        newCard.className='card';
-        newCard.innerHTML=`
-        `
-    })
 }
+showUI(dummydata[0]);
