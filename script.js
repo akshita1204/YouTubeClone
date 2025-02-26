@@ -5758,7 +5758,7 @@ const showUI = (list) => {
 //function to handle the search
 function handleSearch(event)
 {
-    const query = searchInput.value.trim().toLowerCase();
+    const query = searchInput.value.trim().toLowerCase();  //Extra spaces hata raha hai
   if(!query) 
   {
     showUI(dummydata[0])
@@ -5780,9 +5780,10 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("keypress", (event) => {
         if (event.key === "Enter") handleSearch(); 
     });
+
     
     if (dummydata && Array.isArray(dummydata[0])) {
-        showUI(dummydata[0]); // ✅ Load all videos on page load
+        showUI(dummydata[0]); //Load all videos on page load
     } else {
         console.error("Error: dummydata[0] is not an array.");
     }
