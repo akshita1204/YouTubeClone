@@ -5727,9 +5727,9 @@ const dummydata = [
     ]
 ]
 
-
+const root = document.querySelector('main');
 const showUI = (list) => {
-    const root = document.querySelector('main');
+    
     list.forEach((obj,idx) => {
         const newCard = document.createElement('div');
         newCard.addEventListener("click",()=>
@@ -5738,7 +5738,7 @@ const showUI = (list) => {
         });
         newCard.className = 'card';
         newCard.innerHTML = `
-        <img src='${obj.videoThumbnails[0].url}' alt='Thumbnail' width:"100%" onmouseover='handleHover(event, ${idx})'>
+        <img src='${obj.videoThumbnails[0].url}' alt='Thumbnail' width:"100%" >
         <h6>${obj.author}</h6>
         <h4>${obj.title}</h4>
         `;
@@ -5746,7 +5746,4 @@ const showUI = (list) => {
     });
 };
 
-const handlehover=(e,idx)=>
-{
-}
 showUI(dummydata[0]);
