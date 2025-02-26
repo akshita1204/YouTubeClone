@@ -5728,9 +5728,16 @@ const dummydata = [
 ]
 
 const root = document.querySelector('main');
+const searchInput = document.querySelector("input[name='searach-text']");
+const searchButton = document.querySelector("button");
 const showUI = (list) => {
     
-    list.forEach((obj,idx) => {
+    root.innerHTML = "";
+    if (list.length === 0) {
+        root.innerHTML = "<h3 style='color:white'>No videos found.</h3>"; // no match 
+        return;
+    }
+    list.forEach((obj) => {
         const newCard = document.createElement('div');
         newCard.addEventListener("click",()=>
         {
@@ -5746,4 +5753,38 @@ const showUI = (list) => {
     });
 };
 
+
+
+//function to handle the search
+function handleSearch(event)
+{
+    const query = searchInput.value.trim().toLowerCase();
+  if(!query) 
+  {
+    showUI(dummydata[0])
+    return;
+  }
+  if (!Array.isArray(dummydata[0])) {
+    console.error("Invalid data format: Expected an array.");
+    return;
+}
+  const filteredVideo=dummydata[0].filter(video=>
+    video.title.toLowerCase().includes(query) || video.author.toLowerCase().includes(query)
+  )
+  showUI(filteredVideo)
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    searchButton.addEventListener("click", handleSearch);
+    searchInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") handleSearch(); 
+    });
+    
+    if (dummydata && Array.isArray(dummydata[0])) {
+        showUI(dummydata[0]); // ✅ Load all videos on page load
+    } else {
+        console.error("Error: dummydata[0] is not an array.");
+    }
+});
 showUI(dummydata[0]);
